@@ -17,7 +17,8 @@ export class App extends Component {
   setProgress=(prog)=>{
     this.setState({progress:prog})
   }
- 
+  
+  apiKey=process.env.REACT_APP_NEWS_API;
 
   render() {
     let category = ['general', 'business', 'sports', 'health', 'technology', 'entertainment'];
@@ -29,7 +30,7 @@ export class App extends Component {
         <Routes>
           {category?.map((elem, i) => {
             // Manual Binding is to be done while passing function as a prop if ES6 class is used  
-            return (<Route exact key={"route" + i} path={elem === 'general' ? '/' : elem} element={<News key={elem} onProgressChange={this.setProgress.bind(this)} country="in" category={elem} pageSize="8" />}></Route>)
+            return (<Route exact key={"route" + i} path={elem === 'general' ? '/' : elem} element={<News key={elem} onProgressChange={this.setProgress.bind(this)} country="in" category={elem} pageSize="8"  apiKey={this.apiKey}/>}></Route>)
           })}
         </Routes>
       </BrowserRouter>,
