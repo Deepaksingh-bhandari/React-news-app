@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import defualtProps from 'prop-types';
 
-export class Newsitem extends Component {
-    static defualtProps = {
-        title: 'Default News Title',
-        Description: 'Default News Descriptioin',
-        author: 'Unknown'
-    }
-    convertDate(dt) {
+// export class Newsitem extends Component {
+    const Newsitem=(props)=>{
+    // static defualtProps = {
+    //     title: 'Default News Title',
+    //     Description: 'Default News Descriptioin',
+    //     author: 'Unknown'
+    // }
+    const convertDate=(dt)=> {
         let todayDate = new Date();
         let msDiff = todayDate.getTime() - dt.getTime();
 
@@ -29,8 +31,8 @@ export class Newsitem extends Component {
             return (days.toFixed(0) + ` day(s) ago`)
 
     }
-    render() {
-        let { title, description, imageUrl, newsUrl, updatedAt, author, source } = this.props;
+    // render() {
+        let { title, description, imageUrl, newsUrl, updatedAt, author, source } = props;
         return (
             <div className="card mx-3 my-3 col-md-3 col-sm-6" >
                 <img style={{ pointerEvents: 'cursor' }} src={imageUrl} className="card-img-top rounded-3" alt="news" />
@@ -43,11 +45,15 @@ export class Newsitem extends Component {
                     <p className="card-text"><small className="text-info">Source: {source}</small></p>
                     <a href={newsUrl} target="_blank" className="btn btn-sm btn-outline-primary">Check Detailed News</a>
                     <div className="card-footer m-2 text-muted">
-                    {this.convertDate(new Date(updatedAt))}
+                    {convertDate(new Date(updatedAt))}
                     </div>
                 </div>
             </div>);
     }
-}
-
+// }
+ Newsitem.defaultProps = {
+        title: 'Default News Title',
+        Description: 'Default News Descriptioin',
+        author: 'Unknown'
+    }
 export default Newsitem;
